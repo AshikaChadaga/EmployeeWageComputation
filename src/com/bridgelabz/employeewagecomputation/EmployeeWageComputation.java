@@ -4,18 +4,13 @@ public class EmployeeWageComputation {
 
 	private static final int IS_FULL_TIME = 1;
 	private static final int IS_PART_TIME = 2;
-	private static final int EMP_WAGE_PER_HOUR = 20;
-	private static final int WORKING_DAYS_PER_MONTH = 20;
-	private static final int TOTAL_WORKING_HOURS = 100;
 	
-	
-	public static void main(String[] args) {
+	public static int calculateEmpWageForCompany(String company, int empRate, int numOFDays, int maxHours) {
 		
-		
+		System.out.println("----- Welcome to Employee Wage Computation! -----");		
 		int empHrs=0, empWagePerMonth = 0, totalWorkingdays=0, totalEmpHours = 0;
-		System.out.println("----- Welcome to Employee Wage Computation! -----");
-		
-		while(totalEmpHours <= TOTAL_WORKING_HOURS && totalWorkingdays < WORKING_DAYS_PER_MONTH) {
+				
+		while(totalEmpHours <= maxHours && totalWorkingdays < numOFDays) {
 			
 			totalWorkingdays ++;
 			int empType = (int)Math.floor(Math.random() * 10) % 3;
@@ -32,13 +27,19 @@ public class EmployeeWageComputation {
 			}
 			
 			totalEmpHours += empHrs;
-			int empWagePerDay = empHrs * EMP_WAGE_PER_HOUR;
+			int empWagePerDay = empHrs * empRate;
 			empWagePerMonth += empWagePerDay;
-			
 			System.out.println("Emp Wage Per Day : "+empWagePerDay);
 		}
 		
-		System.out.println("Emp Wage Per Month : "+empWagePerMonth);
+		System.out.println("Emp Wage Per Month for Company: "+company+" is : "+empWagePerMonth);
+		return empWagePerMonth;
+	}
+	
+	public static void main(String[] args) {
+		calculateEmpWageForCompany("BridgeLabz", 20, 2, 10);
+		calculateEmpWageForCompany("Reliance", 10, 4, 20);
+
 	}
 
 }
