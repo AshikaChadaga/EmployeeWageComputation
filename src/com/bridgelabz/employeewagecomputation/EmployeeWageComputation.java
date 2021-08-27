@@ -16,14 +16,12 @@ public class EmployeeWageComputation {
 		this.numOFDays = numOFDays;
 		this.maxHours = maxHours;
 	}
-	
-	public static void main(String[] args) {
-		EmployeeWageComputation bridgelabz = new EmployeeWageComputation("BridgeLabz", 20, 2, 10);
+	public int calculateEmpWageForCompany() {
 		
 		System.out.println("----- Welcome to Employee Wage Computation! -----");
 		int empHrs=0, empWagePerMonth = 0, totalWorkingdays=0, totalEmpHours = 0;
 				
-		while(totalEmpHours <= bridgelabz.maxHours && totalWorkingdays < bridgelabz.numOFDays) {
+		while(totalEmpHours <= this.maxHours && totalWorkingdays < this.numOFDays) {
 			
 			totalWorkingdays ++;
 			int empType = (int)Math.floor(Math.random() * 10) % 3;
@@ -40,13 +38,22 @@ public class EmployeeWageComputation {
 			}
 			
 			totalEmpHours += empHrs;
-			int empWagePerDay = empHrs * bridgelabz.empRate;
+			int empWagePerDay = empHrs * this.empRate;
 			empWagePerMonth += empWagePerDay;
 			System.out.println("Emp Wage Per Day : "+empWagePerDay);
 		}
 		
-		System.out.println("Emp Wage Per Month for Company: "+bridgelabz.company+" is : "+empWagePerMonth);
-				
+		System.out.println("Emp Wage Per Month for Company: "+this.company+" is : "+empWagePerMonth);
+		return empWagePerMonth;
+	}
+	
+	public static void main(String[] args) {
+		EmployeeWageComputation bridgelabz = new EmployeeWageComputation("BridgeLabz", 20, 2, 10);
+		EmployeeWageComputation dMart = new EmployeeWageComputation("DMART", 40, 5, 20);
+		bridgelabz.calculateEmpWageForCompany();
+		System.out.println();
+		dMart.calculateEmpWageForCompany();
+		
 	
 	}
 
